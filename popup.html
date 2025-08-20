@@ -1,0 +1,38 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>StatusWatch</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <div class="container vstack">
+    <div class="header">
+      <div class="hstack">
+        <img src="icons/icon-32.png" alt="" width="20" height="20" style="border-radius:6px"/>
+        <div class="title">StatusWatch</div>
+        <span id="countBadge" class="badge"></span>
+      </div>
+      <div class="hstack">
+        <button id="refreshBtn" class="button secondary" title="Rafraîchir">
+          <span id="refreshLabel">Rafraîchir</span>
+          <span id="spinner" class="spinner" style="display:none"></span>
+        </button>
+        <a class="button ghost" href="options.html" target="_blank">Options</a>
+      </div>
+    </div>
+
+    <div id="list" class="list"></div>
+    <div id="empty" class="empty" style="display:none">
+      Aucune ressource configurée. Ouvrez les Options pour ajouter des services.
+    </div>
+
+    <footer>
+      Astuce : définissez un intervalle d’actualisation dans les Options. Les requêtes sont envoyées à votre API externe.
+    </footer>
+  </div>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

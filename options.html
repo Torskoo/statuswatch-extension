@@ -1,0 +1,72 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>StatusWatch – Options</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <div class="container vstack" style="max-width:860px">
+    <div class="header">
+      <div class="hstack">
+        <img src="icons/icon-32.png" alt="" width="20" height="20" style="border-radius:6px"/>
+        <div class="title">StatusWatch – Options</div>
+      </div>
+      <a href="popup.html" class="button secondary">Ouvrir le popup</a>
+    </div>
+
+    <div class="card vstack">
+      <div class="hstack" style="justify-content:space-between">
+        <strong>Paramètres de l’API externe</strong>
+        <span class="small">L’extension enverra les URLs à cette API.</span>
+      </div>
+      <div class="vstack">
+        <label>Base URL de l’API
+          <input id="apiBaseUrl" placeholder="https://api.mondomaine.tld/monitor"/>
+        </label>
+        <label>API Key (optionnel)
+          <input id="apiKey" placeholder="clé ou jeton"/>
+        </label>
+        <label>Intervalle d’actualisation (secondes)
+          <input id="refreshIntervalSec" type="number" min="60" step="30" value="60"/>
+        </label>
+      </div>
+      <div class="hstack" style="justify-content:flex-end">
+        <button id="saveApi" class="button">Enregistrer</button>
+      </div>
+    </div>
+
+    <div class="card vstack">
+      <div class="hstack" style="justify-content:space-between">
+        <strong>Services à surveiller</strong>
+        <span class="small">Ajoutez des noms conviviaux et des URLs/hosts.</span>
+      </div>
+      <div class="row">
+        <input id="svcName" placeholder="Nom (ex. API Prod)"/>
+        <input id="svcUrl" placeholder="URL/Hostname/IP (ex. https://api.exemple.com/health)"/>
+        <button id="addSvc" class="button">Ajouter</button>
+      </div>
+      <div id="svcList" class="list"></div>
+      <div class="hstack" style="justify-content:flex-end">
+        <button id="testNow" class="button secondary">Tester maintenant</button>
+      </div>
+    </div>
+
+    <div class="card vstack">
+      <strong>Schéma attendu de l’API</strong>
+      <div class="small">
+        <code>POST {apiBaseUrl}/check</code> avec le corps suivant :<br/>
+        <pre style="white-space:pre-wrap;background:#0f1525;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.08)">{ "services": [ { "id": "uuid", "url": "https://..." } ] }</pre>
+        L’API doit répondre :<br/>
+        <pre style="white-space:pre-wrap;background:#0f1525;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.08)">{ "results": [ { "id": "uuid", "status": "up|down", "latency_ms": 123 } ] }</pre>
+        Ajoutez l’en-tête <code>Authorization: Bearer &lt;token&gt;</code> si nécessaire.
+      </div>
+    </div>
+
+    <footer>Vos données sont stockées localement via <code>browser.storage.local</code>.</footer>
+  </div>
+  <script type="module" src="options.js"></script>
+</body>
+</html>
